@@ -11,9 +11,8 @@ app.use(express.json())
 //db config
 connectDB()
 
-// for json data
-app.use(express.json())
 
+app.use('/api/register', require('./routers/auth/register'))
 //port
 const PORT = process.env.PORT || 5890
 
