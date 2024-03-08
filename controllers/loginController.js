@@ -12,7 +12,12 @@ const handleLogin = async (req,res) => {
         return res.status(401).json("Invalid  username or password")
         }
         const {password, ...others} = foundUser._doc
-        res.status(200).json(others)
+        const access_token = jwt.sign(
+            {id: foundUser._id, isAdmin: foundUser.isAdmin},
+            process.env.ACCESS_TOKEN,
+            {expiresIn: '3d'}
+        )
+        res.status(200).json(others, access_token)
     } catch (error) {
         res.status(500).json(`Error: ${error.message}`)
         
