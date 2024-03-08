@@ -13,6 +13,9 @@ connectDB()
 
 
 app.use('/api/register', require('./routers/auth/register'))
+app.use('/api/login', require('./routers/auth/login'))
+app.use('/api/user', require('./routers/User'))
+
 //port
 const PORT = process.env.PORT || 5890
 
